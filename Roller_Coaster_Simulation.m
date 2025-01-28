@@ -24,19 +24,19 @@ position(1,:) = [x0 y0 z0];
 % Zero G Parabola
 parabola_end = ; % final length of track of parabola
 parabola_start = ; % start length of track of parabola
-if S < parabola_end
+if S > parabola_start && S < parabola_end
     %code here
 
 % Loop
 loop_end = ; % final length of track of loop
 loop_start = ; % start length of track of loop
-elseif S < loop_end
+elseif S > loop_start && S < loop_end
     %code here
 
 % Banked Turn
-parabola_end = ; % final length of track of banked
+banked_end = ; % final length of track of banked
 banked_start = ; % start length of track of banked
-elseif S < banked_end
+elseif S > banked_start && S < banked_end
     %code here
 
 % Breaking
