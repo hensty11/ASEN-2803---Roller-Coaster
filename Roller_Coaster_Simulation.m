@@ -7,6 +7,7 @@ x0 = 0; % initial x value (meters)
 y0 = 0; % initial y value (meters)
 z0 = 125; % initial z value (meters)
 v0 = 0; % initial velocity (m/s)
+track_len = 0; % UPDATE THIS AS YOU ADD TRACK
 
 % max G forces
 max_forward = 5; % back of seat
