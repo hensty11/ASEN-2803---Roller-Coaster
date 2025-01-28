@@ -20,10 +20,31 @@ max_length = 1250; % meters
 position = zeros(max_length,3); % matrix of positions over time
 position(1,:) = [x0 y0 z0];
 
-%% Zero G Parabola
+%% Roller Coaster Forces
+% Zero G Parabola
+parabola_end = ; % final length of track of parabola
+parabola_start = ; % start length of track of parabola
+if S < parabola_end
+    %code here
 
+% Loop
+loop_end = ; % final length of track of loop
+loop_start = ; % start length of track of loop
+elseif S < loop_end
+    %code here
 
-%% Loop
+% Banked Turn
+parabola_end = ; % final length of track of banked
+banked_start = ; % start length of track of banked
+elseif S < banked_end
+    %code here
 
+% Breaking
+breaking_start = ; % start length of track of breaking
+elseif S > breaking_start
+    %code here
 
-%% Banked Turn
+% Transition
+else
+    %code here
+end
