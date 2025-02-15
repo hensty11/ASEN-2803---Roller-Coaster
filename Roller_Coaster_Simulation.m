@@ -78,6 +78,20 @@ G_normal = [G_normal abs_G];
 G_tangential = [G_tangential zeros(1,length(s_new))];
 G_lateral = [G_lateral zeros(1,length(s_new))];
 
+% Plotting
+figure(1);
+subplot(3,1,1);
+plot(s_new, abs_G)
+title("Normal Forces acting on parabola")
+subplot(3,1,2);
+plot(s_new, zeros(1,length(s_new)));
+title("Tangential Forces acting on parabola")
+ylabel("Gs Experienced")
+subplot(3,1,3);
+plot(s_new, zeros(1,length(s_new)));
+title("Lateral Forces acting on parabola")
+xlabel("s Position (m)")
+
 
 %% Transition into Loop
 r_exit2 = 40;
@@ -116,6 +130,20 @@ G_normal = [G_normal abs_G];
 G_tangential = [G_tangential zeros(1,length(s_new))];
 G_lateral = [G_lateral zeros(1,length(s_new))];
 
+% Plotting
+figure(2);
+subplot(3,1,1);
+plot(s_new, abs_G)
+title("Normal Forces acting on loop")
+subplot(3,1,2);
+plot(s_new, zeros(1,length(s_new)));
+title("Tangential Forces acting on loop")
+ylabel("Gs Experienced")
+subplot(3,1,3);
+plot(s_new, zeros(1,length(s_new)));
+title("Lateral Forces acting on loop")
+xlabel("s Position (m)")
+
 
 %% Banked Turn
 r_bank = 32; % radius of curve (m)
@@ -128,13 +156,28 @@ G_bank(:) = 1./cos(theta);
 x_bank = r_bank .* sin(theta_curve);
 y_bank = r_bank - r_bank .* cos(theta_curve);
 
-s = [s s(end)+s_bank];
+s_new = s(end)+s_bank;
+s = [s s_new];
 x = [x x(end)+x_bank];
 y = [y y(end)+y_bank];
 z = [z z(end)+zeros(1,length(x_bank))];
 G_normal = [G_normal G_bank];
 G_lateral = zeros(1,length(G_normal));
 G_tangential = zeros(1,length(G_normal));
+
+% Plotting
+figure(3);
+subplot(3,1,1);
+plot(s_new, G_bank)
+title("Normal Forces acting on banked turn")
+subplot(3,1,2);
+plot(s_new, zeros(1,length(s_new)));
+title("Tangential Forces acting on banked turn")
+ylabel("Gs Experienced")
+subplot(3,1,3);
+plot(s_new, zeros(1,length(s_new)));
+title("Lateral Forces acting on banked turn")
+xlabel("s Position (m)")
 
 
 %% Breaking section 1
@@ -207,19 +250,44 @@ x = [x x_break];
 z = [z z(end)+zeros(1,length(x_break))];
 y = [y y(end)+zeros(1,length(x_break))];
 
+s_new = l_break;
+% Plotting
+figure(4);
+subplot(3,1,1);
+plot(s_new, 1+zeros(1,length(G_break)))
+title("Normal Forces acting on breaking")
+subplot(3,1,2);
+plot(s_new, G_break);
+title("Tangential Forces acting on breaking")
+ylabel("Gs Experienced")
+subplot(3,1,3);
+plot(s_new, zeros(1,length(s_new)));
+title("Lateral Forces acting on breaking")
+xlabel("s Position (m)")
+
 %% Figures
-figure(1)
+figure(5)
 plot3(x,y,z)
-title("xyz position")
-
-figure(2)
+grid on;
+title("xyz Position")
+xlabel('x Position (m)')
+ylabel('y Position (m)')
+zlabel('z Position (m)')
+ 
+figure(6)
 plot(s,G_normal)
-title("Normal Gs over s")
-
-figure(3)
+title("Normal Gs Over s")
+xlabel('s Position (m)')
+ylabel('Normal Gs')
+ 
+figure(7)
 plot(s,G_tangential)
-title("Tangential Gs over s")
-
-figure(4)
+title("Tangential Gs Over s")
+xlabel('s Position (m)')
+ylabel('Tangential Gs')
+ 
+figure(8)
 plot(s,G_lateral)
-title("Lateral Gs over s")
+title("Lateral Gs Over s")
+xlabel('s Position (m)')
+ylabel('Lateral Gs')
